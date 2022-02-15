@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<title>{{v_version_titel}}</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="shortcut icon" href="../static/bewerber.ico" type="image/x-icon" />
+<link rel="stylesheet" href="../static/w3.css">
+<link rel="stylesheet" href="../static/bootstrap.min.css">
+<link rel="stylesheet" href="../static/dna-theme.css">
+<link rel="stylesheet" href="../static/format.css">
+</head>
+
+<body>
+
+<!-- Header -->
+
+<div class="w3-row-padding">
+  <header class="card">
+    <center><h3>{{v_version_program}}</h3></center>
+  </header>
+</div>
+<br>
+<!--Navigation-->
+<div class="w3-container">
+  <ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" href="/">Home</a>
+    </li>
+  </ul>
+</div>
+
+<br>
+
+<div class="w3-row-padding">
+  <div class="w3-quarter">
+  &nbsp;
+  </div>
+
+  <div class="w3-half">
+    <form class="w3-container card w3-round">
+      <h2><center>Es wurde exportiert für Reporting: (csv)</center></h2>
+        </form>
+  </div>
+
+  <div class="w3-quarter">
+&nbsp;
+  </div>
+</div>
+
+
+
+<br>
+
+<div class="w3-row-padding">
+  <div class="w3-card">
+    <form class="w3-container w3-card-4 w3-round">
+    <h3>Bewerberliste</h3>
+      <div class="w3-row-padding">
+        <table>
+          <tr>
+            <th>Bewerber ID</th>	<th>Name</th>	<th>Vorname</th>	<th>Eingangsdatum</th> <th>eMail</th> <th>Telefon</th>	<th>Status Bewerbung</th>
+          </tr>
+
+          {% for zeile in tabellebew %}
+          <tr>
+            {% for zelle in zeile %}
+            <td>{{ zelle }}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </table>
+        <br><br>
+      </div>
+    </form>
+  </div>
+</div>
+<br>
+
+<div class="w3-row-padding">
+  <div class="w3-card">
+    <form class="w3-container w3-card-4 w3-round">
+    <h3>Stellenliste</h3>
+      <div class="w3-row-padding">
+        <table>
+          <tr>
+            <th>Stellen ID</th>	<th>Bezeichnung</th>	<th>besetzen ab</th>	<th>besetzen bis</th> <th>Eingangsfrist</th> <th>Soll AZ</th>	<th>Status Stelle</th>
+          </tr>
+
+          {% for zeile in tabellestellen %}
+          <tr>
+            {% for zelle in zeile %}
+            <td>{{ zelle }}</td>
+            {% endfor %}
+          </tr>
+          {% endfor %}
+        </table>
+        <br><br>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+
+<div id="footer">
+  <p><center><H5>ARM-Tools - 2021/2022</H5></center></p>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

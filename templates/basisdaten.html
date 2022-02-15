@@ -1,0 +1,261 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+<title>{{v_version_titel}}</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="../static/w3.css">
+<link rel="stylesheet" href="../static/bootstrap.min.css">
+<link rel="stylesheet" href="../static/dna-theme.css">
+
+</head>
+
+<body>
+
+    <!-- Header -->
+    <div class="w3-row-padding">
+        <header class="card">
+            <center><h3>{{v_version_program}} Stammdatenanlage</h3></center>
+        </header>
+    </div>
+    <br>
+
+    <!--Navigation-->
+    <div class="w3-container">
+
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" href="basisdaten.html">Konfiguration</a>
+            </li>
+        </ul>
+    </div>
+    <br>
+
+
+
+    <div class="w3-row-padding">
+        <br>
+        <form action="http://localhost:17102/basisdaten.html" class="w3-container w3-card-4 w3-round" , method="POST">
+            <h2>Grunddaten für deine Abrechnung erfassen</h2>
+            <div class="w3-section">
+                <div class="w3-quarter">
+                    <input class="w3-input w3-border  w3-pale-yellow w3-round" type="text" name="form_berater" , value={{v_bnr}} required maxlength="7">
+                    <label>Beraternummer<br></label><br>
+                </div>
+            </div>
+            <div class="w3-section">
+                <div class="w3-quarter">
+                    <input class="w3-input w3-border  w3-pale-yellow w3-round" type="text" name="form_mandant" , value={{v_mdt}} required maxlength="5">
+                    <label>Mandantennummer<br></label><br>
+                </div>
+            </div>
+
+
+            <div class="w3-row-section">
+                <div class="w3-quarter">
+                    <div class="w3-half">
+                        <p><label>&nbsp;&nbsp;Abrechnungsmonat:</label></p>
+                    </div>
+                    <div class="w3-half">
+                        <select class="form-control w3-col w3-half w3-input w3-border" type="text" name="form_abrmonat">
+                            <option value="01">01</option>
+                            <option value="02">02</option>
+                            <option value="03">03</option>
+                            <option value="04">04</option>
+                            <option value="05">05</option>
+                            <option value="06">06</option>
+                            <option value="07">07</option>
+                            <option value="08">08</option>
+                            <option value="09">09</option>
+                            <option value="10">10</option>
+                            <option value="11">11</option>
+                            <option value="12">12</option>
+                        </select>
+                    </div>
+                </div>
+            
+                <div class="w3-quarter">
+                    <div class="w3-half">
+                        <p><label>&nbsp;&nbsp;Abrechnungsjahr: </label></p>
+                    </div>
+                
+                <div class="w3-half">
+                    <select class="form-control w3-col w3-half w3-input w3-border" type="text" name="form_abrjahr">
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                        <option value="2025">2025</option>
+                    </select>
+                </div>
+            </div>
+
+
+
+         <div class="w3-row">
+             <div class="w3-quarter">
+                 Bruttolohnarten:<br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns1" value="6601" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns2" value="6602" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns3" value="6611" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns4" value="6612" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns5" value="6621" readonly maxlength="4">
+                 <br />
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns6" value="6622" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns7" value="6623" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns8" value="6631" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns9" value="6632" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns10" value="6649" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns11" value="6633" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns12" value="6634" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns13" value="6641" readonly maxlength="4">
+                 <br>
+
+             </div>
+             <div class="w3-quarter">
+                 Lohnartentext<br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts1" value="Honorar 250 EUR ohne Steuer" readonly maxlength="23">
+                 <br><!-- LOA ohne USt werden nicht mehr benötigt-->
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts2" value="Honorar 250 EUR ohne Steuer o.USt" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts3" value="Honorar 15% pauschal" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts4" value="Honorar 15% pauschal o.USt" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts5" value="Honorar abzgl. Betriebsausgaben" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts6" value="Betriebsausgaben bei Honorar" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts7" value="Verrechnung Betriebsausgaben" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts8" value="Honorar Nettovereinbarung" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts9" value="Honorar Nettovereinbarung o.USt" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts10" value="Verrechnung Steuer/Soli bei Nettovereinbarung" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts11" value="Honorar Nettovereinbarung bis 250 EUR" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts12" value="Honorar Nettovereinbarung bis 250 EUR o.USt" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts13" value="Honorar ohne Steuer wegen DBA" readonly maxlength="23">
+                 <br>
+             </div>
+
+             <div class="w3-quarter">
+                 Steuer/Nettoabzüge: Lohnartennummer<br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb1" value="9601" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb2" value="9602" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb3" value="9603" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb4" value="9604" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb5" value="9605" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb6" value="9606" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb7" value="9608" readonly maxlength="4">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb8" value="9609" readonly maxlength="4">
+                 <br />
+                 <br />
+                 <br />Konten Finanzbuchhaltung
+                 <br />
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="konto_ggagp" value="6770" readonly maxlength="8">
+                 <br />
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="konto_ust7" value="3801" readonly maxlength="8">
+                 <br />
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="konto_ust19" value="3837" readonly maxlength="8">
+
+
+             </div>
+             <div class="w3-quarter">
+                 Lohnartentext                    <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb1" value="Abzugssteuer 15% pauschal" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb2" value="Abzugssteuer 30% pauschal" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb3" value="Abzug Soli 5,5% pauschal" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb4" value="Abzugssteuer 17,82% pauschal" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb5" value="Abzug Soli 0,98% pauschal" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb6" value="Agenturprovision AN Anteil" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb7" value="USt Abzug 7%" readonly maxlength="23">
+                 <br>
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb8" value="USt Abzug 19%" readonly maxlength="23">
+                 <br />
+                 <br />
+                 <br />
+                 <br />
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="kontotext_ggagp" value="Gegenkonto Agenturprovision" readonly maxlength="23">
+                 <br />
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="kontotext_ust7" value="Konto USt. 7%" readonly maxlength="23">
+                 <br />
+                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="kontotext_ust19" value="Konto USt. 13b 19%" readonly maxlength="23">
+             </div>
+            <br>
+        </div>
+
+        <br>
+
+    </div></div>
+            <br>
+    <div class="w3-third">
+        <center>
+            <input type="submit" button class="btn btn-primary" value="speichern" />
+        </center><br>
+    </div>
+
+    <div class="w3-third">&NonBreakingSpace;</div>
+
+    <div class="w3-third">
+        <center>
+            <input type="reset" button class="btn btn-default" value="verwerfen">
+        </center><br>
+    </div>
+    </form>
+    </div>
+
+    <div class="w3-quarter">
+        &nbsp;
+    </div>
+    <br>
+
+
+    <div class="w3-row-padding">
+        <footer class="card">
+            <center>
+                <h3>
+                    Lohnarten im Lohnprogramm anlegen!
+                </h3>
+            </center>
+        </footer>
+    </div>
+    
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</body>
+</html>

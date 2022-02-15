@@ -1,0 +1,44 @@
+[Allgemein]
+Ziel=LODAS
+Version_SST=1.0
+BeraterNr=228198
+MandantenNr=20201
+Datumsformat=JJJJ-MM-TT
+Stringbegrenzer='
+
+* LEGENDE:
+* Datei erzeugt mit Tool ARMTool
+* AP: Andreé Rosenkranz; andree@rosenkranz.one
+
+* Satzbeschreibungen zur Übergabe von Bewegungsdaten für Mitarbeiter
+[Satzbeschreibung]
+
+10;u_lod_bwd_buchung_standard;abrechnung_zeitraum#bwd;pnr#bwd;la_eigene#bwd;bs_nr#bwd;bs_wert_butab#bwd;kostenstelle#bwd;
+
+* Werte zur Abrechnung von Mitarbeitern
+
+[Bewegungsdaten]
+
+10;2022-03-01;1001;9606;3;-50,0;;;
+10;2022-03-01;1002;9606;3;-50,0;;;
+10;2022-03-01;1006;9606;3;-75,0;;;
+10;2022-03-01;1001;9609;3;-190,0;;;
+10;2022-03-01;1002;9609;3;-190,0;;;
+10;2022-03-01;1006;9609;3;-190,0;;;
+10;2022-03-01;1001;6621;2;1000,00;;;
+10;2022-03-01;1001;9602;3;-300,0;;;
+10;2022-03-01;1001;9603;3;-16,5;;;
+10;2022-03-01;1002;6621;2;1000,00;;;
+10;2022-03-01;1002;9602;3;-300,0;;;
+10;2022-03-01;1002;9603;3;-16,5;;;
+10;2022-03-01;1002;6622;2;1000,00;;;
+10;2022-03-01;1006;6621;2;1000,00;;;
+10;2022-03-01;1006;9602;3;-300,0;;;
+10;2022-03-01;1006;9603;3;-16,5;;;
+10;2022-03-01;1006;6622;2;1000,00;;;
+
+
+[Hinweisdaten]
+
+Daten uebernommen aus Erfassungstool ARMTool
+fuer die korrekte Berechnung saemtlicher Werte ist allein der Anwender verantwortlich!
