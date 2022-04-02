@@ -28,7 +28,6 @@
             <a class="nav-link" href="/">Home</a>
         </li>
 
-
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Erfassung</a>
             <div class="dropdown-menu">
@@ -100,6 +99,7 @@
                     <br>
                     <select class="form-control w3-input w3-pale-yellow input w3-border-red" type="text" name="form_steuer" , required style="width:50%">
                         <option value="19" selected>USt 13b 19%</option>
+                        <option value="99">USt 13b 19% AG</option>
                         <option value="0">USt befreit</option>
                         <option value="7">USt 7%</option>
                     </select><br>
@@ -238,7 +238,7 @@
             </div>
             <input class="w3-col l3 w3-input w3-border" type="text" name="form_kostenstelle" , maxlength="13">
             <div class="w3-col l3 w3-left">
-                <p><label>Kostenträger/Agentur</label></p>
+                <p><label>Kostenträger</label></p>
             </div>
             <input class="w3-col l3 w3-input w3-border" type="text" name="form_kostentraeger" , maxlength="13">
         </div>
@@ -270,9 +270,17 @@
       
 
         <div class="w3-row-padding">
-            <div class="w3-col l12 w3-left">
+            <div class="w3-col l6 w3-left">
                 <h3>Agenturprovision als Betrag oder % erfassen !</h3>
             </div>
+            <br />
+            <div class="w3-col l2 w3-left">
+                <p><label>Agenturnummer</label></p>
+            </div>
+
+            <input class="w3-col l4 w3-input w3-border" type="text" name="form_agenturnummer" pattern="[0-9]*" maxlength="9" placeholder="0">
+
+
         </div>
 
         <div class="w3-row-padding">

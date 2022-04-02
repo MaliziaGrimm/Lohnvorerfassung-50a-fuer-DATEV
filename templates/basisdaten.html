@@ -28,8 +28,13 @@
             <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link active" href="basisdaten.html">Konfiguration</a>
+            <li class="nav-item dropdown">
+                <a class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Grundstammdaten</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="basisdaten.html">Grundeinstellungen</a>
+                    <a class="dropdown-item" href="basis_fibu.html">Fibu Konten</a>
+                    <a class="dropdown-item" href="basis_an.html">AN anlegen</a>
+                </div>
             </li>
         </ul>
     </div>
@@ -97,7 +102,7 @@
 
          <div class="w3-row">
              <div class="w3-quarter">
-                 Bruttolohnarten:<br>
+                 <label>Bruttolohnarten</label><br>
                  <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns1" value="6601" readonly maxlength="4">
                  <br>
                  <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ns2" value="6602" readonly maxlength="4">
@@ -127,91 +132,99 @@
 
              </div>
              <div class="w3-quarter">
-                 Lohnartentext<br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts1" value="Honorar 250 EUR ohne Steuer" readonly maxlength="23">
-                 <br><!-- LOA ohne USt werden nicht mehr benötigt-->
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts2" value="Honorar 250 EUR ohne Steuer o.USt" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts3" value="Honorar 15% pauschal" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts4" value="Honorar 15% pauschal o.USt" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts5" value="Honorar abzgl. Betriebsausgaben" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts6" value="Betriebsausgaben bei Honorar" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts7" value="Verrechnung Betriebsausgaben" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts8" value="Honorar Nettovereinbarung" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts9" value="Honorar Nettovereinbarung o.USt" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts10" value="Verrechnung Steuer/Soli bei Nettovereinbarung" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts11" value="Honorar Nettovereinbarung bis 250 EUR" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts12" value="Honorar Nettovereinbarung bis 250 EUR o.USt" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts13" value="Honorar ohne Steuer wegen DBA" readonly maxlength="23">
-                 <br>
-             </div>
+                 <label>
+                     Lohnartentext</label><br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts1" value="Honorar 250 EUR ohne Steuer" readonly maxlength="23">
+                     <br><!-- LOA ohne USt werden nicht mehr benötigt-->
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts2" value="Honorar 250 EUR ohne Steuer o.USt" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts3" value="Honorar 15% pauschal" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts4" value="Honorar 15% pauschal o.USt" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts5" value="Honorar abzgl. Betriebsausgaben" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts6" value="Betriebsausgaben bei Honorar" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts7" value="Verrechnung Betriebsausgaben" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts8" value="Honorar Nettovereinbarung" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts9" value="Honorar Nettovereinbarung o.USt" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts10" value="Verrechnung Steuer/Soli bei Nettovereinbarung" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts11" value="Honorar Nettovereinbarung bis 250 EUR" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts12" value="Honorar Nettovereinbarung bis 250 EUR o.USt" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_ts13" value="Honorar ohne Steuer wegen DBA" readonly maxlength="23">
+                     <br>
+</div>
 
              <div class="w3-quarter">
-                 Steuer/Nettoabzüge: Lohnartennummer<br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb1" value="9601" readonly maxlength="4">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb2" value="9602" readonly maxlength="4">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb3" value="9603" readonly maxlength="4">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb4" value="9604" readonly maxlength="4">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb5" value="9605" readonly maxlength="4">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb6" value="9606" readonly maxlength="4">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb7" value="9608" readonly maxlength="4">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb8" value="9609" readonly maxlength="4">
-                 <br />
-                 <br />
-                 <br />Konten Finanzbuchhaltung
-                 <br />
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="konto_ggagp" value="6770" readonly maxlength="8">
-                 <br />
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="konto_ust7" value="3801" readonly maxlength="8">
-                 <br />
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="konto_ust19" value="3837" readonly maxlength="8">
+                 <label>
+                     Steuer/Nettoabzüge: Lohnartennummer</label><br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb1" value="9601" readonly maxlength="4">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb2" value="9602" readonly maxlength="4">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb3" value="9603" readonly maxlength="4">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb4" value="9604" readonly maxlength="4">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb5" value="9605" readonly maxlength="4">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb6" value="9606" readonly maxlength="4">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb7" value="9608" readonly maxlength="4">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_nb8" value="9609" readonly maxlength="4">
+                     <br />
+                     <!--<br />
+    <br />Konten Finanzbuchhaltung
+    <br />
+    <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="konto_ggagp" value="6770" readonly maxlength="8">
+    <br />
+    <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="konto_ggagpan" value="6771" readonly maxlength="8">
+    <br />
+    <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="konto_ust7" value="3801" readonly maxlength="8">
+    <br />
+    <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="konto_ust19" value="3837" readonly maxlength="8">-->
 
 
-             </div>
+</div>
              <div class="w3-quarter">
-                 Lohnartentext                    <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb1" value="Abzugssteuer 15% pauschal" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb2" value="Abzugssteuer 30% pauschal" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb3" value="Abzug Soli 5,5% pauschal" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb4" value="Abzugssteuer 17,82% pauschal" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb5" value="Abzug Soli 0,98% pauschal" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb6" value="Agenturprovision AN Anteil" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb7" value="USt Abzug 7%" readonly maxlength="23">
-                 <br>
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb8" value="USt Abzug 19%" readonly maxlength="23">
-                 <br />
-                 <br />
-                 <br />
-                 <br />
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="kontotext_ggagp" value="Gegenkonto Agenturprovision" readonly maxlength="23">
-                 <br />
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="kontotext_ust7" value="Konto USt. 7%" readonly maxlength="23">
-                 <br />
-                 <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="kontotext_ust19" value="Konto USt. 13b 19%" readonly maxlength="23">
-             </div>
+                 <label>
+                     Lohnartentext    </label>                <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb1" value="Abzugssteuer 15% pauschal" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb2" value="Abzugssteuer 30% pauschal" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb3" value="Abzug Soli 5,5% pauschal" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb4" value="Abzugssteuer 17,82% pauschal" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb5" value="Abzug Soli 0,98% pauschal" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb6" value="Agenturprovision AN Anteil" readonly maxlength="23">
+                     <br>
+
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb7" value="USt Abzug 7%" readonly maxlength="23">
+                     <br>
+                     <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="loa_tb8" value="USt Abzug 19%" readonly maxlength="23">
+                     <br />
+                     <!--<br />
+    <br />
+    <br />
+    <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="kontotext_ggagp" value="Gegenkonto Agenturprovision" readonly maxlength="23">
+    <br />
+    <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="kontotext_ggagpan" value="Gegenkonto Agenturprovision AN" readonly maxlength="23">
+    <br />
+    <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="kontotext_ust7" value="Konto USt. 7%" readonly maxlength="23">
+    <br />
+    <input class="w3-input w3-border w3-round  w3-light-grey" type="text" name="kontotext_ust19" value="Konto USt. 13b 19%" readonly maxlength="23">-->
+</div>
             <br>
         </div>
 
