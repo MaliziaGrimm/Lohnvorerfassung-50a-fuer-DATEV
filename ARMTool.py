@@ -15,8 +15,6 @@ from sqlalchemy.sql import select
 app = Flask(__name__)
 
 
-### neu
-
 @app.route('/export_steuer.html', methods=['GET', 'POST']) # noch offen 2021-12-21
 def abrechnungsdaten_exportierensteuer():
     var_version_titel = setting.Version_Titel
@@ -232,7 +230,7 @@ def abrechnungsdaten_exportierenlodas():
     var_text = exportmodul.export_lodas(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennummer)
     
     engine = create_engine('sqlite:///daten/abrechnungsdaten.db') 
-    message = engine.execute("SELECT abrechnungsdaten.id, abrechnungsdaten.PNR, abrechnungsdaten.lohnart, abrechnungsdaten.wert, abrechnungsdaten.kostenstelle, abrechnungsdaten.kostentraeger, abrechnungsdaten.artdertaetigkeit FROM abrechnungsdaten WHERE ((abrechnungsdaten.lohnart>6600 AND abrechnungsdaten.lohnart<6700) AND abrechnungsdaten.exportlodas==\"N\") ORDER BY abrechnungsdaten.PNR")
+    message = engine.execute("SELECT abrechnungsdaten.id, abrechnungsdaten.PNR, abrechnungsdaten.lohnart, abrechnungsdaten.wert, abrechnungsdaten.kostenstelle, abrechnungsdaten.kostentraeger, abrechnungsdaten.artdertaetigkeit FROM abrechnungsdaten WHERE ((abrechnungsdaten.lohnart>6600 AND abrechnungsdaten.lohnart<9999) AND abrechnungsdaten.exportlodas==\"N\") ORDER BY abrechnungsdaten.PNR")
 
     return render_template('/export_lodas.html', v_text=var_text, v_bnr=var_beraternummer, tabelle=message, v_mdt=var_mandantennummer, v_monat=var_abrmonat, v_jahr=var_abrjahr, v_version_program=var_version_program, v_version_titel=var_version_titel)
 
@@ -257,15 +255,11 @@ def abrechnungsdaten_exportierenlug():
     var_text = exportmodul.export_lohnundgehalt(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennummer)
     
     engine = create_engine('sqlite:///daten/abrechnungsdaten.db') 
-    message = engine.execute("SELECT abrechnungsdaten.id, abrechnungsdaten.PNR, abrechnungsdaten.lohnart, abrechnungsdaten.wert, abrechnungsdaten.kostenstelle, abrechnungsdaten.kostentraeger, abrechnungsdaten.artdertaetigkeit FROM abrechnungsdaten WHERE ((abrechnungsdaten.lohnart>6600 AND abrechnungsdaten.lohnart<6700) AND abrechnungsdaten.exportlohnundgehalt==\"N\") ORDER BY abrechnungsdaten.PNR")
+    message = engine.execute("SELECT abrechnungsdaten.id, abrechnungsdaten.PNR, abrechnungsdaten.lohnart, abrechnungsdaten.wert, abrechnungsdaten.kostenstelle, abrechnungsdaten.kostentraeger, abrechnungsdaten.artdertaetigkeit FROM abrechnungsdaten WHERE ((abrechnungsdaten.lohnart>6600 AND abrechnungsdaten.lohnart<9999) AND abrechnungsdaten.exportlohnundgehalt==\"N\") ORDER BY abrechnungsdaten.PNR")
     return render_template('/export_lug.html', v_text=var_text, v_bnr=var_beraternummer, tabelle=message, v_mdt=var_mandantennummer, v_monat=var_abrmonat, v_jahr=var_abrjahr, v_version_program=var_version_program, v_version_titel=var_version_titel)
-
-    # return render_template('/index.html', v_text=var_text, v_bnr=var_beraternummer, tabelle=message, v_mdt=var_mandantennummer, v_monat=var_abrmonat, v_jahr=var_abrjahr, v_version_program=var_version_program, v_version_titel=var_version_titel)
-
-
     
     ##### Export komplett nach csv
-@app.route('/export_csv.html')#, methods=['GET', 'POST'])
+@app.route('/export_csv.html')
 def export_csv():
     var_kalendertag=os.path.join(time.strftime('%d.%m.%Y'))
     var_version_titel = setting.Version_Titel
@@ -292,7 +286,7 @@ def export_csv():
 
 ####### Ergänzung erforderlich 
 # Basisdaten stimmen nicht, durch Anlage eines dict sind es zu viele Stellen
-# macht aber keinen fehler aktuell
+# macht aber keinen Fehler aktuell
 #############################################################################
 @app.route('/basisdaten.html', methods=['POST', 'GET'])
 def basisdaten():
@@ -359,6 +353,48 @@ def basisdaten():
     v_version_program=var_version_program, v_version_titel=var_version_titel, v_sn1=var_3, v_st1=var_4, 
     v_bn1=var_5,v_bt1=var_6, v_bt5=var_99)
 
+## NEU 31.03.2022
+#############################################################################
+@app.route('/basis_an.html', methods=['POST', 'GET'])
+def basis_an():
+##############################################################
+### Anlage der AN_Stammdaten für die Erfassung
+##############################################################
+        
+    if request.method == 'POST':
+        fileziel=open("daten/PNR_Datei.txt","a", encoding='utf-8')
+        var_name=request.form['form_name']
+        var_vname=request.form['form_vname']
+        var_vpnr=request.form['form_pnr']
+        fileziel.writelines(var_vpnr+" "+var_name+", "+var_vname+"\n")
+        fileziel.close()
+    else:
+        pass
+
+    var_version_titel = setting.Version_Titel
+    var_version_program = setting.Version_Program
+
+    return render_template('basis_an.html', v_version_program=var_version_program, v_version_titel=var_version_titel)
+
+## NEU 31.03.2022
+#############################################################################
+@app.route('/basis_fibu.html', methods=['POST', 'GET'])
+def basis_fibu():
+##############################################################
+### Anlage der Fibukonten für die Erfassung
+##############################################################
+
+        
+    if request.method == 'POST':
+        funktionen.fibukonten_dic_schreiben()
+    else:
+        pass
+
+
+    var_version_titel = setting.Version_Titel
+    var_version_program = setting.Version_Program
+
+    return render_template('basis_fibu.html', v_version_program=var_version_program, v_version_titel=var_version_titel)
 
 
 

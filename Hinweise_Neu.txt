@@ -1,0 +1,27 @@
+    # aktuell werden alle erfassten DS exportiert, die noch nicht exportert wurden
+    # unabhängig vom Erfassungsmonat
+
+ # Zwischendatei anlegen für Buchungsliste Agenturprovision AG Anteil
+Es werden 2 identische Zwischendateien angelegt - close und open der gleichen Datei ging zu schnell und führte zu fehlern
+es werden 3 BuLi erzeugt
+
+
+Datum Erfassung in abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr wird gesetzt - aber
+beim Export Lodas wird nur geprüft = exportlodas="N" und dann abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr mit dem Exportmoant/jahr ersetzt
+
+beim Export für Fibu wird stelle 12 = Buchungsmonat; stelle 13 = Buchungsjahr dann als Basis genommen; 
+
+99988 "sonstige Agentur in Fibu anlegen, wenn keine Agentur erfasst wurde.
+
+!! noch den Import beschreiben Excel/Daten aus Text/Trennzeichen bei Wert von , auf . ändern :-)
+
+# Export der USt in Zwischendatei geht sicher schneller - zur nachvollziehbarkeit bleiben zw dateien aerhlten bis zum nächsten exort
+
+
+neu eingebaut sind USt 13b trägt AG 
+	erzeugt Buchungsliste
+	wird dem AN nicht abgezogen vom Honorar
+
+
+
+*N Grunddaten Fibu noch eintragen bei Aufruf

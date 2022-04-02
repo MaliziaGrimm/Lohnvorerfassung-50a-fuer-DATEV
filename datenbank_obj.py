@@ -29,7 +29,8 @@ def abrechnungsdaten_dbobj(metadata):
     Column('exportlodas', Text),
     Column('exportlohnundgehalt', Text),
     Column('exportwiederholung', Text),
-    Column('exportdatum', Text)
+    Column('exportdatum', Text),
+    Column('agenturnummer', Text)
     )
     return abrechnungsdaten
 

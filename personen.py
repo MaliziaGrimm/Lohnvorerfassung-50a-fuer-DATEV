@@ -48,6 +48,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                 prozentagp = 0
                 prozentAN = 0
                 
+                
             else:
                 agenturprov_AN, agenturprov_AG, prozentagp, prozentAN= funktionen.agenturprov_berechnen(provbasis)
 
@@ -70,9 +71,8 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr, 
                                                             agenturprovprozent=prozentagp, agenturprovprozent_AN=prozentAN, agenturprovwert_AN=agenturprov_AN, agenturprovwert_AG=agenturprov_AG,
                                                             lohnartustabzug=ust_Lohnart, ustwert=ust_Wert, kontoust=ust_Konto, exportlodas="N",
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
-############ ok
 
     # Pauschalsteuer 15%
         if request.form['form_personalnummer'] == "Auswahl" or (request.form['form_eurovorkommap15'] == "" and request.form['form_euronachkommap15'] == ""):
@@ -149,7 +149,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr, 
                                                             agenturprovprozent=prozentagp, agenturprovprozent_AN=prozentAN, agenturprovwert_AN=agenturprov_AN, agenturprovwert_AG=agenturprov_AG,
                                                             lohnartustabzug=ust_Lohnart, ustwert=ust_Wert, kontoust=ust_Konto, exportlodas="N",
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
             
             insert_daten = abrechnungsdaten.insert().values(beraternummer=var_beraternummer, mandantennummer=var_mandantennummer, PNR=request.form['form_personalnummer'], lohnart=lohnartp15, lohnart_text=lohnart_textp15, wert=pauschsteuer, 
@@ -157,7 +157,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr, 
                                                             agenturprovprozent="0", agenturprovprozent_AN="0", agenturprovwert_AN="0", agenturprovwert_AG="0",
                                                             lohnartustabzug="0", ustwert="0", kontoust="0", exportlodas="N",
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
             
             insert_daten = abrechnungsdaten.insert().values(beraternummer=var_beraternummer, mandantennummer=var_mandantennummer, PNR=request.form['form_personalnummer'], lohnart=lohnartsoli, lohnart_text=lohnart_textsoli, wert=pauschsoli, 
@@ -165,7 +165,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr, 
                                                             agenturprovprozent="0", agenturprovprozent_AN="0", agenturprovwert_AN="0", agenturprovwert_AG="0",
                                                             lohnartustabzug="0", ustwert="0", kontoust="0", exportlodas="N",
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
 
 
@@ -243,7 +243,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr, 
                                                             agenturprovprozent=prozentagp, agenturprovprozent_AN=prozentAN, agenturprovwert_AN=agenturprov_AN, agenturprovwert_AG=agenturprov_AG,
                                                             lohnartustabzug=ust_Lohnart, ustwert=ust_Wert, kontoust=ust_Konto, exportlodas="N",
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
 
             insert_daten = abrechnungsdaten.insert().values(beraternummer=var_beraternummer, mandantennummer=var_mandantennummer, PNR=request.form['form_personalnummer'], lohnart=lohnartp30, lohnart_text=lohnart_textp30, wert=pauschsteuer, 
@@ -251,7 +251,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr, 
                                                             agenturprovprozent="0", agenturprovprozent_AN="0", agenturprovwert_AN="0", agenturprovwert_AG="0",
                                                             lohnartustabzug="0", ustwert="0", kontoust="0", exportlodas="N", 
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
 
             insert_daten = abrechnungsdaten.insert().values(beraternummer=var_beraternummer, mandantennummer=var_mandantennummer, PNR=request.form['form_personalnummer'], lohnart=lohnartsoli, lohnart_text=lohnart_textsoli, wert=pauschsoli, 
@@ -259,7 +259,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr, 
                                                             agenturprovprozent="0", agenturprovprozent_AN="0", agenturprovwert_AN="0", agenturprovwert_AG="0",
                                                             lohnartustabzug="0", ustwert="0", kontoust="0", exportlodas="N",
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
 
 # Betriebsausgabenabzug bei Gage
@@ -288,7 +288,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr,
                                                             agenturprovprozent="0", agenturprovprozent_AN="0", agenturprovwert_AN="0", agenturprovwert_AG="0",
                                                             lohnartustabzug="0", ustwert="0", kontoust="0", exportlodas="N",
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
 
 # Gage Nettovereinbarung 
@@ -318,7 +318,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                 agenturprov = 0
                 prozentagp = 0
                 prozentAN = 0
-                print("Du hast keine Provision eingegeben")
+                
 
             else:
                 agenturprov_AN, agenturprov_AG, prozentagp, prozentAN= funktionen.agenturprov_berechnen(provbasis)
@@ -368,7 +368,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr, 
                                                             agenturprovprozent=prozentagp, agenturprovprozent_AN=prozentAN, agenturprovwert_AN=agenturprov_AN, agenturprovwert_AG=agenturprov_AG, 
                                                             lohnartustabzug=ust_Lohnart, ustwert=ust_Wert, kontoust=ust_Konto, exportlodas="N", 
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
 
             insert_daten = abrechnungsdaten.insert().values(beraternummer=var_beraternummer, mandantennummer=var_mandantennummer, PNR=request.form['form_personalnummer'], lohnart=lohnartv, lohnart_text=lohnart_textv, wert=str(pauschverrechnung), 
@@ -376,7 +376,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr,
                                                             agenturprovprozent="0", agenturprovprozent_AN="0", agenturprovwert_AN="0", agenturprovwert_AG="0",
                                                             lohnartustabzug="0", ustwert="0", kontoust="0", exportlodas="N", 
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
 
             insert_daten = abrechnungsdaten.insert().values(beraternummer=var_beraternummer, mandantennummer=var_mandantennummer, PNR=request.form['form_personalnummer'], lohnart=lohnartp17, lohnart_text=lohnart_textp17, wert=pauschsteuer, 
@@ -384,7 +384,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr, 
                                                             agenturprovprozent="0", agenturprovprozent_AN="0", agenturprovwert_AN="0", agenturprovwert_AG="0",
                                                             lohnartustabzug="0", ustwert="0", kontoust="0", exportlodas="N", 
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
 
             insert_daten = abrechnungsdaten.insert().values(beraternummer=var_beraternummer, mandantennummer=var_mandantennummer, PNR=request.form['form_personalnummer'], lohnart=lohnartsoli5, lohnart_text=lohnart_textsoli5, wert=pauschsoli, 
@@ -392,7 +392,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr, 
                                                             agenturprovprozent="0", agenturprovprozent_AN="0", agenturprovwert_AN="0", agenturprovwert_AG="0",
                                                             lohnartustabzug="0", ustwert="0", kontoust="0", exportlodas="N", 
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
 
 
@@ -423,7 +423,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                 agenturprov = 0
                 prozentagp = 0
                 prozentAN = 0
-                print("Du hast keine Provision eingegeben")
+                
 
             else:
                 agenturprov_AN, agenturprov_AG, prozentagp, prozentAN= funktionen.agenturprov_berechnen(provbasis)
@@ -449,7 +449,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr, 
                                                             agenturprovprozent=prozentagp, agenturprovprozent_AN=prozentAN, agenturprovwert_AN=agenturprov_AN, agenturprovwert_AG=agenturprov_AG, 
                                                             lohnartustabzug=ust_Lohnart, ustwert=ust_Wert, kontoust=ust_Konto, exportlodas="N", 
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
            
 
@@ -482,7 +482,7 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                 agenturprov = 0
                 prozentagp = 0
                 prozentAN = 0
-                print("Du hast keine Provision eingegeben")
+                
 
             else:
                 agenturprov_AN, agenturprov_AG, prozentagp, prozentAN= funktionen.agenturprov_berechnen(provbasis)
@@ -508,44 +508,8 @@ def abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennu
                                                             artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat, abrechnungsjahr=var_abrjahr, 
                                                             agenturprovprozent=prozentagp, agenturprovprozent_AN=prozentAN, agenturprovwert_AN=agenturprov_AN, agenturprovwert_AG=agenturprov_AG, 
                                                             lohnartustabzug=ust_Lohnart, ustwert=ust_Wert, kontoust=ust_Konto, exportlodas="N", 
-                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
+                                                            exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000", agenturnummer=request.form["form_agenturnummer"])
             engine.execute(insert_daten)
-
-            #insert_daten = abrechnungsdaten.insert().values(PNR=request.form['form_personalnummer'], lohnart=request.form["form_gehaltdba"], wert=setvorkomma+"."+setnachkomma,
-            #                                               kostenstelle=request.form["form_kostenstelle"], kostentraeger=request.form["form_kostentraeger"], 
-            #                                               artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat,
-            #                                               abrechnungsjahr=var_abrjahr, exportlodas="N", exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
-            #
-
-
-# Agenturprovision
-
-    #    if request.form['form_personalnummer'] == "Auswahl" or (request.form['form_eurovorkommaagp'] == "" and request.form['form_euronachkommaagp'] == ""):
-    #        pass
-    #    else:
-    #        if request.form["form_eurovorkommaagp"] == "":
-    #            setvorkomma = "0"
-    #        else:
-    #            setvorkomma = request.form["form_eurovorkommaagp"]
-    #        if request.form["form_euronachkommaagp"] == "":
-    #            setnachkomma = "00"
-    #        elif request.form["form_euronachkommaagp"] == "0":
-    #            setnachkomma = "00"
-    #        elif len(request.form["form_euronachkommaagp"]) == 1:
-    #            setnachkomma = "0"+request.form["form_euronachkommaagp"]
-    #        else:
-    #            setnachkomma = request.form["form_euronachkommaagp"]
-    #        # war mal drin request.form["form_gehaltagp"]
-
-    #        insert_daten = abrechnungsdaten.insert().values(PNR=request.form['form_personalnummer'], lohnart="9606", wert=setvorkomma+"."+setnachkomma, 
-    #                                                        kostenstelle=request.form["form_kostenstelle"], kostentraeger=request.form["form_kostentraeger"], 
-    #                                                        artdertaetigkeit=request.form["form_abrtyp"], freitext=request.form["form_freiertext"], abrechnungsmonat=var_abrmonat,
-    #                                                        abrechnungsjahr=var_abrjahr, exportlodas="N", exportlohnundgehalt="N", exportwiederholung="N", exportdatum="00.00.0000")
-    #        engine.execute(insert_daten)
-
-    #else:
-        
-    #    pass
     
     return 
 
@@ -557,16 +521,12 @@ def abrechnungsdaten_del():
     abrechnungsdaten = datenbank_obj.abrechnungsdaten_dbobj(metadata)
     metadata.create_all()
 
-    ####
-    ## if .. noch einbauen, damit nur DS gelöscht werden können die auch aktuell sind! #abrechnungsdaten.c.exportlodas=="N" and
-    ## and klappt nicht - löscht dann alle mit beiden Bedingungen
 
     if request.method == 'POST':
         loeschen_daten = abrechnungsdaten.delete().where(abrechnungsdaten.c.id==request.form['form_id'])
         engine.execute(loeschen_daten)
         loeschen_daten = abrechnungsdaten.select()
         engine.execute(loeschen_daten).fetchall
-#        notification.notify(title = "ARMTools", message = f"Es wurde der Datensatz\nmit der ID: "+request.form['form_id']+"\ngelöscht!\n")
 
     else:
         

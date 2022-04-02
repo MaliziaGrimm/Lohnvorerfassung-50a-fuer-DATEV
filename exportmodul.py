@@ -18,12 +18,14 @@ def export_steuer(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennum
 
 def export_steuerli(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennummer):
     # brauche ich für Auswahl der Datensätze ggf.
+    # aktuell werden alle erfassten DS exportiert, die noch nicht exportert wurden
+    # unabhängig vom Erfassungsmonat
     return 
 
 
 def export_steuerliste(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennummer):
-    # der eigentliche ExcelExport bzw. PDF Druck
-    #     (geplant)
+    # der eigentliche ExcelExport bzw. 
+    #    PDF Druck (geplant)
     var_stmonat=request.form["form_stmonat"]
     var_stjahr=request.form["form_stjahr"]
     
@@ -140,40 +142,77 @@ def export_steuerliste(var_abrmonat, var_abrjahr, var_beraternummer, var_mandant
     result.to_csv("export/"+var_beraternummer+"_"+var_mandantennummer+"_"+var_stmonat+"_"+var_stjahr+"_Export_Monatsauswertung_8.csv", sep=';', encoding='utf-8', index=False, mode='w') 
     # Zwischendatei anlegen für Buchungsliste Agenturprovision AG Anteil
     result.to_csv("daten/ZW_Buchungsliste_AGP_AG.txt", sep='|', encoding='utf-8', index=False, header=False, mode='w') 
+    result.to_csv("daten/ZW_Buchungsliste_AGP_AN.txt", sep='|', encoding='utf-8', index=False, header=False, mode='w') 
 
-    # Quell und Zieldatei öffnen - AGP Werte um Buchungsliste zu schreiben 
+    # Quell und Zieldatei öffnen - Agenturprov AG Werte in Buchungsliste zu schreiben 
     filequelle=open("daten/ZW_Buchungsliste_AGP_AG.txt")
-    fileziel=open("export/"+var_beraternummer+"_"+var_mandantennummer+"_"+var_stmonat+"_"+var_stjahr+"_AGP_AG_Buchungsliste.csv","w", encoding='utf-8')
+    fileziel=open("export/"+var_beraternummer+"_"+var_mandantennummer+"_"+var_stmonat+"_"+var_stjahr+"_AGP_AGWerte_Buchungsliste.csv","w", encoding='utf-8')
 
     #Beschreibung der Felder aus der Quelldatei
-    #stelle 1 = Satznummer; stelle 2 = BNR; stelle 3 = Mdt; stelle 4 = PNR; stelle 5 = Lohnart; stelle 6 = LohnartText; stelle 7 = Wert; stelle 8 = Kostenstelle; stelle 9 = Kostenträger/Agentur
+    #stelle 1 = Satznummer; stelle 2 = BNR; stelle 3 = Mdt; stelle 4 = PNR; stelle 5 = Lohnart; stelle 6 = LohnartText; stelle 7 = Wert; stelle 8 = Kostenstelle; stelle 9 = Kostenträger;
     #stelle 10 = Art der Tätigkeit; stelle 11 = Freitext; stelle 12 = Buchungsmonat; stelle 13 = Buchungsjahr; stelle 14 = %Agentur gesamt; stelle 15 = %Agentur AN Anteil; stelle 16 = agenturprovwert_AN; 
     #stelle 17 = agenturprovwert_AG, stelle 18 = lohnartustabzug; stelle 19 = ustwert; stelle 20 = kontoust; stelle 21 = exportlodas; stelle 22 = exportlohnundgehalt; stelle 23 = exportwiederholung; 
-    #stelle 24 = exportdatum;
-    AGP_Gegenkonto = funktionen.lohnarten_dic_lesen("konto_ggagp")
+    #stelle 24 = exportdatum; stelle 25 = Agenturnummer
+    AGP_Gegenkonto = funktionen.fibukonten_dic_lesen("konto_ggagp")
+    print(AGP_Gegenkonto)
     
     #Beschreibung Exportdatei
-    #AGP Gegenkonnto (aus dict); Kostenträger/Agentur (Personenkonto Rewe) wird auf 99999 gesetzt falls leer; Wert AGP AG in -; Buchungsdatum mit 01MMJJJJ; freier Text als Buchungstext 120 Zeichen ?????
+    #AGP Gegenkonto (aus dict); Agentur (Personenkonto Rewe) wird auf 99988 gesetzt falls leer; Wert AGP AG in -; Buchungsdatum mit 01MMJJJJ; freier Text als Buchungstext 120 Zeichen ?????
     for x in filequelle:
-        stelle1,stelle2,stelle3,stelle4,stelle5,stelle6,stelle7,stelle8,stelle9,stelle10,stelle11,stelle12,stelle13,stelle14,stelle15,stelle16,stelle17,stelle18,stelle19,stelle20,stelle21,stelle22,stelle23,stelle24=x.split("|")
-        stelle24 = (stelle24.strip())
-        if str(stelle17) != "0":
-            if stelle9 == "":
-                stelle9 = "99999"
-            fileziel.write(AGP_Gegenkonto+";"+stelle9+";"+stelle17+";01"+stelle12+stelle13+";"+stelle11+"_AGP %: "+stelle14+"_davon_AGP_AN %: "+stelle15+"\n")
+        stelle1,stelle2,stelle3,stelle4,stelle5,stelle6,stelle7,stelle8,stelle9,stelle10,stelle11,stelle12,stelle13,stelle14,stelle15,stelle16,stelle17,stelle18,stelle19,stelle20,stelle21,stelle22,stelle23,stelle24,stelle25=x.split("|")
+        stelle25 = (stelle25.strip())
+        if str(stelle17) != "0.0" and str(stelle17) != "0":
+            if stelle25 == "":
+                stelle25 = "99988"
+            fileziel.write(AGP_Gegenkonto+";"+stelle25+";"+stelle17+";01"+stelle12+stelle13+";"+stelle8+";"+stelle9+";PNR: "+stelle4+" AGP %: "+stelle14+" davon AGP AN %: "+stelle15+" Text:"+stelle11+"\n")
     filequelle.close()
     fileziel.close()
 
-    #Column('freitext', Text),
-    #Column('abrechnungsmonat', Text),
-    #Column('abrechnungsjahr', Text),
-    #Column('agenturprovprozent', Text),
-    #Column('agenturprovprozent_AN', Text),
-    #Column('agenturprovwert_AN', Text),
-    #Column('agenturprovwert_AG', Text),
+    # Quell und Zieldatei öffnen - AGP Werte um Buchungsliste zu schreiben 
+    filequelle=open("daten/ZW_Buchungsliste_AGP_AN.txt")
+    fileziel=open("export/"+var_beraternummer+"_"+var_mandantennummer+"_"+var_stmonat+"_"+var_stjahr+"_AGP_ANWerte_Buchungsliste.csv","w", encoding='utf-8')
 
+   # Buchungsliste Agenturprov AN Werte schreiben
+    AGP_AN_Gegenkonto = funktionen.fibukonten_dic_lesen("konto_ggagpan")
+    
+    #Beschreibung Exportdatei
+    #AGP Gegenkonto (aus dict); Agentur (Personenkonto Rewe) wird auf 99988 gesetzt falls leer; Wert AGP AN in -; Buchungsdatum mit 01MMJJJJ; freier Text als Buchungstext 120 Zeichen ?????
+    for x in filequelle:
+        stelle1,stelle2,stelle3,stelle4,stelle5,stelle6,stelle7,stelle8,stelle9,stelle10,stelle11,stelle12,stelle13,stelle14,stelle15,stelle16,stelle17,stelle18,stelle19,stelle20,stelle21,stelle22,stelle23,stelle24,stelle25=x.split("|")
+        stelle25 = (stelle25.strip())
+        if str(stelle16) != "0.0" and str(stelle16) != "0":
+            if stelle25 == "":
+                stelle25 = "99988"
+            fileziel.write(AGP_AN_Gegenkonto+";"+stelle25+";"+stelle16+";01"+stelle12+stelle13+";"+stelle8+";"+stelle9+";PNR: "+stelle4+" AGP %: "+stelle14+" davon AGP AN %: "+stelle15+" Text:"+stelle11+"\n")
+    filequelle.close()
+    fileziel.close()
 
+    #Beschreibung der Felder aus der Quelldatei
+    #stelle 1 = Satznummer; stelle 2 = BNR; stelle 3 = Mdt; stelle 4 = PNR; stelle 5 = Lohnart; stelle 6 = LohnartText; stelle 7 = Wert; stelle 8 = Kostenstelle; stelle 9 = Kostenträger;
+    #stelle 10 = Art der Tätigkeit; stelle 11 = Freitext; stelle 12 = Buchungsmonat; stelle 13 = Buchungsjahr; stelle 14 = %Agentur gesamt; stelle 15 = %Agentur AN Anteil; stelle 16 = agenturprovwert_AN; 
+    #stelle 17 = agenturprovwert_AG, stelle 18 = lohnartustabzug; stelle 19 = ustwert; stelle 20 = kontoust; stelle 21 = exportlodas; stelle 22 = exportlohnundgehalt; stelle 23 = exportwiederholung; 
+    #stelle 24 = exportdatum; stelle 25 = Agenturnummer
+    
+   # Quell und Zieldatei öffnen - AGP Werte um Buchungsliste zu schreiben 
+    filequelle=open("daten/ZW_Buchungsliste_AGP_AG.txt")
+    fileziel=open("export/"+var_beraternummer+"_"+var_mandantennummer+"_"+var_stmonat+"_"+var_stjahr+"_AG_USt_Werte_Buchungsliste.csv","w", encoding='utf-8')
 
+   # Buchungsliste Agenturprov AN Werte schreiben
+    AG_USt_konto = funktionen.fibukonten_dic_lesen("konto_ust19")
+    GG_AG_USt_konto = funktionen.fibukonten_dic_lesen("konto_ggust19") 
+    
+    #Beschreibung Exportdatei
+    #AG USt Gegenkonto (aus dict); Agentur (Personenkonto Rewe) wird auf "unbekannt" gesetzt falls leer; Buchungsdatum mit 01MMJJJJ; freier Text als Buchungstext 120 Zeichen ?????
+    for x in filequelle:
+        stelle1,stelle2,stelle3,stelle4,stelle5,stelle6,stelle7,stelle8,stelle9,stelle10,stelle11,stelle12,stelle13,stelle14,stelle15,stelle16,stelle17,stelle18,stelle19,stelle20,stelle21,stelle22,stelle23,stelle24,stelle25=x.split("|")
+        stelle25 = (stelle25.strip())
+        if str(stelle18) == "0" and str(stelle19) != "0" and str(stelle19) != "0.0":
+            if str(stelle16) != "0.0" and str(stelle16) != "0":
+                if stelle25 == "":
+                    stelle25 = "AG unbekannt"
+            fileziel.write(AG_USt_konto+";"+GG_AG_USt_konto+";"+stelle19+";01"+stelle12+stelle13+";"+stelle8+";"+stelle9+";PNR: "+stelle4+" Agentur: "+stelle25+" Text:"+stelle11+"\n")
+    filequelle.close()
+    fileziel.close()
 
     ##################### PDF Block --------------------------- - NOCH OFFEN
     #
@@ -189,9 +228,7 @@ def export_steuerliste(var_abrmonat, var_abrjahr, var_beraternummer, var_mandant
     return var_text, var_stmonat, var_stjahr  
 
 
-#
-# noch den Import beschreiben Excel/Daten aus Text/Trennzeichen bei Wert von , auf . ändern :-)
-#  
+ 
 def export_csv(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennummer):
     
     engine = create_engine('sqlite:///daten/abrechnungsdaten.db')
@@ -211,7 +248,7 @@ def export_csv(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennummer
 
     return var_text
 
-
+## sollte nach vielen anpassungen nicht mehr funktionieren - ungeprüft
 def export_lohnundgehalt(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantenummer):
 
     engine = create_engine('sqlite:///daten/abrechnungsdaten.db')
@@ -297,7 +334,8 @@ def export_lohnundgehalt(var_abrmonat, var_abrjahr, var_beraternummer, var_manda
 
 ### Export Lodas in Funktion aktuell 2022-02-14 mit AGP und USt
 ### Tabellen auf Netto und Brutto geändert 
-### zurück auf Standard - wg. Kostenträger(AGP AN) im Buchungssatz 
+### NEU* 20220402 USt wenn AG übernimmt - LOA 0 in SQL DB
+### USt wenn AN trägt Nettoabzug in SQl DB
 def export_lodas(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantenummer):
 
     engine = create_engine('sqlite:///daten/abrechnungsdaten.db')
@@ -326,14 +364,15 @@ def export_lodas(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantenumme
             fileziel.write("* Satzbeschreibungen zur Übergabe von Bewegungsdaten für Mitarbeiter\n[Satzbeschreibung]\n")
 #            fileziel.write("\n10;u_lod_bwd_buchung_brutto;abrechnung_zeitraum#bwd;pnr#bwd;la_eigene#bwd;brutto_fest_bez#bwd;kostenstelle#bwd;kostentraeger#bwd;")
  #           fileziel.write("\n11;u_lod_bwd_buchung_netto;abrechnung_zeitraum#bwd;pnr#bwd;nba_nr#bwd;netto_betrag#bwd;")
-            fileziel.write("\n10;u_lod_bwd_buchung_standard;abrechnung_zeitraum#bwd;pnr#bwd;la_eigene#bwd;bs_nr#bwd;bs_wert_butab#bwd;kostenstelle#bwd;")
+            fileziel.write("\n10;u_lod_bwd_buchung_standard;abrechnung_zeitraum#bwd;pnr#bwd;la_eigene#bwd;bs_nr#bwd;bs_wert_butab#bwd;kostenstelle#bwd;kostentraeger#bwd;")
 
             fileziel.write("\n\n")
             fileziel.write("* Werte zur Abrechnung von Mitarbeitern\n\n")
             fileziel.write("[Bewegungsdaten]\n\n")
  
 # Export der USt in Zwischendatei
-        result = pd.read_sql('SELECT abrechnungsdaten.PNR, abrechnungsdaten.lohnartustabzug, abrechnungsdaten.ustwert, abrechnungsdaten.kostenstelle, abrechnungsdaten.kostentraeger FROM abrechnungsdaten WHERE abrechnungsdaten.ustwert != "0" AND abrechnungsdaten.exportlodas==\"N\" ', engine)
+# Neu*  20220401 ohne USt AG    result = pd.read_sql('SELECT abrechnungsdaten.PNR, abrechnungsdaten.lohnartustabzug, abrechnungsdaten.ustwert, abrechnungsdaten.kostenstelle, abrechnungsdaten.kostentraeger FROM abrechnungsdaten WHERE abrechnungsdaten.ustwert != "0" AND abrechnungsdaten.exportlodas==\"N\" ', engine)
+        result = pd.read_sql('SELECT abrechnungsdaten.PNR, abrechnungsdaten.lohnartustabzug, abrechnungsdaten.ustwert, abrechnungsdaten.kostenstelle, abrechnungsdaten.kostentraeger FROM abrechnungsdaten WHERE abrechnungsdaten.lohnartustabzug != "0" AND abrechnungsdaten.exportlodas==\"N\" ', engine)
         result.to_csv("daten/ZW_Lodas_USt.txt", sep='|', encoding='utf-8', index=False, header=False, mode='w') 
 # Export der Agenturprovision AN in Zwischendatei
         result = pd.read_sql('SELECT abrechnungsdaten.PNR, abrechnungsdaten.agenturprovwert_AN, abrechnungsdaten.kostenstelle, abrechnungsdaten.kostentraeger FROM abrechnungsdaten WHERE abrechnungsdaten.agenturprovwert_AN != "0" AND abrechnungsdaten.exportlodas==\"N\" ', engine)

@@ -56,18 +56,47 @@ def lohnarten_dic_schreiben():
     while lz < 9:
         lohnarten["loa_nb"+str(lz)] = request.form['loa_nb'+str(lz)]
         lohnarten[request.form['loa_nb'+str(lz)]] = request.form['loa_tb'+str(lz)]
-        controlle = request.form['loa_nb'+str(lz)]+request.form['loa_tb'+str(lz)]
+       # controlle = request.form['loa_nb'+str(lz)]+request.form['loa_tb'+str(lz)]
        # print(controlle)
         lz = lz +1
     
-    lohnarten["konto_ggagp"] = request.form['konto_ggagp']
-    lohnarten[request.form['konto_ggagp']] = request.form['kontotext_ggagp']
-    lohnarten["konto_ust7"] = request.form['konto_ust7']
-    lohnarten[request.form['konto_ust7']] = request.form['kontotext_ust7']
-    lohnarten["konto_ust19"] = request.form['konto_ust19']
-    lohnarten[request.form['konto_ust19']] = request.form['kontotext_ust19']
+    #lohnarten["konto_ggagp"] = request.form['konto_ggagp']
+    #lohnarten[request.form['konto_ggagp']] = request.form['kontotext_ggagp']
+    #lohnarten["konto_ggagpan"] = request.form['konto_ggagpan']
+    #lohnarten[request.form['konto_ggagpan']] = request.form['kontotext_ggagpan']
+    #lohnarten["konto_ust7"] = request.form['konto_ust7']
+    #lohnarten[request.form['konto_ust7']] = request.form['kontotext_ust7']
+    #lohnarten["konto_ust19"] = request.form['konto_ust19']
+    #lohnarten[request.form['konto_ust19']] = request.form['kontotext_ust19']
     
     np.save('daten/lohnarten.npy', lohnarten)
+
+def fibukonten_dic_lesen(fibukonto):
+    fibukonten_text = np.load('daten/fibukonten.npy', allow_pickle='TRUE')
+    fibukonten_text = dict(fibukonten_text.item())
+    fibukonten_text = fibukonten_text.get(fibukonto)
+   
+    return fibukonten_text
+
+    
+def fibukonten_dic_schreiben():
+    fibukonto = {}
+    
+    fibukonto["konto_ggagp"] = request.form['konto_ggagp']
+    fibukonto[request.form['konto_ggagp']] = request.form['kontotext_ggagp']
+    fibukonto["konto_ggagpan"] = request.form['konto_ggagpan']
+    fibukonto[request.form['konto_ggagpan']] = request.form['kontotext_ggagpan']
+    fibukonto["konto_ust7"] = request.form['konto_ust7']
+    fibukonto[request.form['konto_ust7']] = request.form['kontotext_ust7']
+    fibukonto["konto_ust19"] = request.form['konto_ust19']
+    fibukonto[request.form['konto_ust19']] = request.form['kontotext_ust19']
+    fibukonto["konto_ggust19"] = request.form['konto_ggust19']
+    fibukonto[request.form['konto_ggust19']] = request.form['kontotext_ggust19']
+    
+    np.save('daten/fibukonten.npy', fibukonto)
+
+    return
+
  
 ### Agenturprov berechnen
 
@@ -154,12 +183,17 @@ def umsatzsteuer_berechnen(provbasis, ust):
         ust_Wert = int(provbasis)*int(ust)/100*(-1)
         ust_Wert = round (ust_Wert, 2)
         ust_Lohnart = lohnarten_dic_lesen("loa_nb8")
-        ust_Konto = lohnarten_dic_lesen("konto_ust19")
+        ust_Konto = fibukonten_dic_lesen("konto_ust19")
     elif request.form['form_steuer'] == "7":
         ust_Wert = int(provbasis)*int(ust)/100*(-1)
         ust_Wert = round (ust_Wert, 2)
         ust_Lohnart = lohnarten_dic_lesen("loa_nb7")
-        ust_Konto = lohnarten_dic_lesen("konto_ust7")
+        ust_Konto = fibukonten_dic_lesen("konto_ust7")
+    elif request.form['form_steuer'] == "99":
+        ust_Wert = int(provbasis)*int(ust)/100*(-1)
+        ust_Wert = round (ust_Wert, 2)
+        ust_Lohnart = "0" #lohnarten_dic_lesen("loa_nb7")
+        ust_Konto = fibukonten_dic_lesen("konto_ust19")
     else:
         ust_Wert = "0"
         ust_Lohnart = "0"

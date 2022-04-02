@@ -1,7 +1,7 @@
 import setting
 from flask import Flask
 from flask import request
-import os, webbrowser, time
+#import os, webbrowser, time
 from flask import render_template
 import setting
 
@@ -43,4 +43,4 @@ def basisleer():
     var_version_titel = setting.Version_Titel
     var_version_program = setting.Version_Program
 
-    return(var_beraternummer)
+    return(var_beraternummer, var_mandantenummer)
