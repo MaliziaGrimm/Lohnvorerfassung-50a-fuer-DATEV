@@ -1,0 +1,24 @@
+
+Pers.Nr. Name, Vorname
+2 Wichtig, Heinz-Muster
+3 Lau, Frieda-Muster
+4 Schmidt, Ingo-Muster
+5 Schlosser, Max-Muster
+6 Mustermann KR, Helga
+7 Mustermeier, Susi
+8 Musterschulze, Mustervn
+9 Lämmer, Frank-Muster
+10 Bauch, Berta-Muster
+11 Bauch, Bruno-Muster
+1001 Meier, Inge-Muster
+1002 Musterstudent, Musterstud
+1006 Winzig, Leo-Muster
+1007 Baltus, Hugo-Muster
+1020 Waldmeister, Lydia-Muster
+1026 Sinner, Karl-Muster
+1028 Künstler, Marie-Muster
+1029 Waldi, Marie
+1030 Sinnvoll, Rita-Muster
+1038 Classic, Arno-Muster
+1111 Klar, Karla-Muster
+1500 Merlot bei Rumprecht, Simon-Muster
