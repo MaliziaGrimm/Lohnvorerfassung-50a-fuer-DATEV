@@ -383,10 +383,19 @@ def basis_fibu():
 ##############################################################
 ### Anlage der Fibukonten für die Erfassung
 ##############################################################
-
+    konto_ggagp = funktionen.fibukonten_dic_lesen("konto_ggagp")
+    konto_ggagpan = funktionen.fibukonten_dic_lesen("konto_ggagpan")
+    konto_ust7 = funktionen.fibukonten_dic_lesen("konto_ust7")
+    konto_ust19 = funktionen.fibukonten_dic_lesen("konto_ust19")
+    konto_ggust19 = funktionen.fibukonten_dic_lesen("konto_ggust19")
         
     if request.method == 'POST':
         funktionen.fibukonten_dic_schreiben()
+        konto_ggagp = funktionen.fibukonten_dic_lesen("konto_ggagp")
+        konto_ggagpan = funktionen.fibukonten_dic_lesen("konto_ggagpan")
+        konto_ust7 = funktionen.fibukonten_dic_lesen("konto_ust7")
+        konto_ust19 = funktionen.fibukonten_dic_lesen("konto_ust19")
+        konto_ggust19 = funktionen.fibukonten_dic_lesen("konto_ggust19")
     else:
         pass
 
@@ -394,7 +403,7 @@ def basis_fibu():
     var_version_titel = setting.Version_Titel
     var_version_program = setting.Version_Program
 
-    return render_template('basis_fibu.html', v_version_program=var_version_program, v_version_titel=var_version_titel)
+    return render_template('basis_fibu.html', v_version_program=var_version_program, v_version_titel=var_version_titel, v_konto_ggagp = konto_ggagp, v_konto_ggagpan = konto_ggagpan, v_konto_ust7 = konto_ust7, v_konto_ust19 = konto_ust19, v_konto_ggust19 = konto_ggust19)
 
 
 
