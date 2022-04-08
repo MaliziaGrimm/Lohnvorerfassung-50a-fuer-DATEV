@@ -2,7 +2,7 @@
     # unabhängig vom Erfassungsmonat
 
  # Zwischendatei anlegen für Buchungsliste Agenturprovision AG Anteil
-Es werden 2 identische Zwischendateien angelegt - close und open der gleichen Datei ging zu schnell und führte zu fehlern
+Es werden 2 identische Zwischendateien angelegt - close und open der gleichen Datei ging zu schnell und führte zu Fehlern
 es werden 3 BuLi erzeugt
 
 
@@ -15,13 +15,10 @@ beim Export für Fibu wird stelle 12 = Buchungsmonat; stelle 13 = Buchungsjahr d
 
 !! noch den Import beschreiben Excel/Daten aus Text/Trennzeichen bei Wert von , auf . ändern :-)
 
-# Export der USt in Zwischendatei geht sicher schneller - zur nachvollziehbarkeit bleiben zw dateien aerhlten bis zum nächsten exort
-
+# Export der USt in Zwischendatei geht sicher schneller - zur nachvollziehbarkeit bleiben zw dateien erhalten bis zum nächsten export
 
 neu eingebaut sind USt 13b trägt AG 
 	erzeugt Buchungsliste
 	wird dem AN nicht abgezogen vom Honorar
 
-
-
-*N Grunddaten Fibu noch eintragen bei Aufruf
+Grunddaten Fibu noch eintragen bei Aufruf
