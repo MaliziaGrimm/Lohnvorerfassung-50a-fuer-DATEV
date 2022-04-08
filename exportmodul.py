@@ -154,7 +154,7 @@ def export_steuerliste(var_abrmonat, var_abrjahr, var_beraternummer, var_mandant
     #stelle 17 = agenturprovwert_AG, stelle 18 = lohnartustabzug; stelle 19 = ustwert; stelle 20 = kontoust; stelle 21 = exportlodas; stelle 22 = exportlohnundgehalt; stelle 23 = exportwiederholung; 
     #stelle 24 = exportdatum; stelle 25 = Agenturnummer
     AGP_Gegenkonto = funktionen.fibukonten_dic_lesen("konto_ggagp")
-    print(AGP_Gegenkonto)
+    
     
     #Beschreibung Exportdatei
     #AGP Gegenkonto (aus dict); Agentur (Personenkonto Rewe) wird auf 99988 gesetzt falls leer; Wert AGP AG in -; Buchungsdatum mit 01MMJJJJ; freier Text als Buchungstext 120 Zeichen ?????
@@ -164,7 +164,7 @@ def export_steuerliste(var_abrmonat, var_abrjahr, var_beraternummer, var_mandant
         if str(stelle17) != "0.0" and str(stelle17) != "0":
             if stelle25 == "":
                 stelle25 = "99988"
-            fileziel.write(AGP_Gegenkonto+";"+stelle25+";"+stelle17+";01"+stelle12+stelle13+";"+stelle8+";"+stelle9+";PNR: "+stelle4+" AGP %: "+stelle14+" davon AGP AN %: "+stelle15+" Text:"+stelle11+"\n")
+            fileziel.write(AGP_Gegenkonto+";"+stelle25+";"+stelle17+";01"+stelle12+stelle13+";"+stelle8+";"+stelle9+";PNR: "+stelle4+" AGP %: "+stelle14+" davon AGP AN %: "+stelle15+" Text:"+stelle11+";0\n")
     filequelle.close()
     fileziel.close()
 
@@ -183,7 +183,7 @@ def export_steuerliste(var_abrmonat, var_abrjahr, var_beraternummer, var_mandant
         if str(stelle16) != "0.0" and str(stelle16) != "0":
             if stelle25 == "":
                 stelle25 = "99988"
-            fileziel.write(AGP_AN_Gegenkonto+";"+stelle25+";"+stelle16+";01"+stelle12+stelle13+";"+stelle8+";"+stelle9+";PNR: "+stelle4+" AGP %: "+stelle14+" davon AGP AN %: "+stelle15+" Text:"+stelle11+"\n")
+            fileziel.write(AGP_AN_Gegenkonto+";"+stelle25+";"+stelle16+";01"+stelle12+stelle13+";"+stelle8+";"+stelle9+";PNR: "+stelle4+" AGP %: "+stelle14+" davon AGP AN %: "+stelle15+" Text:"+stelle11+";0\n")
     filequelle.close()
     fileziel.close()
 
@@ -210,7 +210,7 @@ def export_steuerliste(var_abrmonat, var_abrjahr, var_beraternummer, var_mandant
             if str(stelle16) != "0.0" and str(stelle16) != "0":
                 if stelle25 == "":
                     stelle25 = "AG unbekannt"
-            fileziel.write(AG_USt_konto+";"+GG_AG_USt_konto+";"+stelle19+";01"+stelle12+stelle13+";"+stelle8+";"+stelle9+";PNR: "+stelle4+" Agentur: "+stelle25+" Text:"+stelle11+"\n")
+            fileziel.write(AG_USt_konto+";"+GG_AG_USt_konto+";"+stelle19+";01"+stelle12+stelle13+";"+stelle8+";"+stelle9+";PNR: "+stelle4+" Agentur: "+stelle25+" Text:"+stelle11+";0\n")
     filequelle.close()
     fileziel.close()
 
