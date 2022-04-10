@@ -383,19 +383,34 @@ def basis_fibu():
 ##############################################################
 ### Anlage der Fibukonten für die Erfassung
 ##############################################################
-    konto_ggagp = funktionen.fibukonten_dic_lesen("konto_ggagp")
-    konto_ggagpan = funktionen.fibukonten_dic_lesen("konto_ggagpan")
-    konto_ust7 = funktionen.fibukonten_dic_lesen("konto_ust7")
-    konto_ust19 = funktionen.fibukonten_dic_lesen("konto_ust19")
-    konto_ggust19 = funktionen.fibukonten_dic_lesen("konto_ggust19")
-        
-    if request.method == 'POST':
-        funktionen.fibukonten_dic_schreiben()
+    if os.path.exists("daten/fibukonten.npy"):
         konto_ggagp = funktionen.fibukonten_dic_lesen("konto_ggagp")
         konto_ggagpan = funktionen.fibukonten_dic_lesen("konto_ggagpan")
         konto_ust7 = funktionen.fibukonten_dic_lesen("konto_ust7")
         konto_ust19 = funktionen.fibukonten_dic_lesen("konto_ust19")
         konto_ggust19 = funktionen.fibukonten_dic_lesen("konto_ggust19")
+    else:
+        konto_ggagp = "Kontonummer erfassen"
+        konto_ggagpan = "Kontonummer erfassen"
+        konto_ust7 = "Kontonummer erfassen"
+        konto_ust19 = "Kontonummer erfassen"
+        konto_ggust19 = "Kontonummer erfassen"
+        
+    if request.method == 'POST':
+        funktionen.fibukonten_dic_schreiben()
+        if os.path.exists("daten/fibukonten.npy"):
+            konto_ggagp = funktionen.fibukonten_dic_lesen("konto_ggagp")
+            konto_ggagpan = funktionen.fibukonten_dic_lesen("konto_ggagpan")
+            konto_ust7 = funktionen.fibukonten_dic_lesen("konto_ust7")
+            konto_ust19 = funktionen.fibukonten_dic_lesen("konto_ust19")
+            konto_ggust19 = funktionen.fibukonten_dic_lesen("konto_ggust19")
+        else:
+            konto_ggagp = "Kontonummer erfassen"
+            konto_ggagpan = "Kontonummer erfassen"
+            konto_ust7 = "Kontonummer erfassen"
+            konto_ust19 = "Kontonummer erfassen"
+            konto_ggust19 = "Kontonummer erfassen"
+
     else:
         pass
 
