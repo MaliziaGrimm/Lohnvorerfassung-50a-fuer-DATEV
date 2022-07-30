@@ -98,6 +98,13 @@ def index():
         fileziel=open("daten/PNR_Datei.txt","w", encoding='utf-8')
         fileziel.write("Arbeitnehmer importieren")
         fileziel.close()
+
+    if os.path.exists("daten/Agentur_Datei.txt"):
+        pass
+    else:
+        fileziel=open("daten/Agentur_Datei.txt","w", encoding='utf-8')
+        fileziel.write("Agenturnummer Bezeichnung\n")
+        fileziel.close()
     ### Ende Prüfung und Anlage
 
     var_version_titel = setting.Version_Titel
@@ -166,12 +173,16 @@ def abrechnungsdaten_erfassen():
     PNR_dropdown_list = PNR_Liste
     PNR_Liste.close
 
+    AGNR_Liste = open("daten/Agentur_Datei.txt","r", encoding='utf-8')
+    AGNR_dropdown_list = AGNR_Liste
+    AGNR_Liste.close
+
     var_beraternummer,var_mandantennummer,var_3,var_4,var_5,var_6 = funktionen.basis_daten_oeffnen()
     var_abrmonat, var_abrjahr = funktionen.abrechnungs_daten_lesen()
 
     personen.abrechnung_erf(var_abrmonat, var_abrjahr, var_beraternummer, var_mandantennummer)
 
-    return render_template('/abrechnungsdaten.html', v_bnr=var_beraternummer, v_mdt=var_mandantennummer, v_monat=var_abrmonat, v_jahr=var_abrjahr, v_version_program=var_version_program, v_version_titel=var_version_titel, PNR_dropdown_list=PNR_dropdown_list)
+    return render_template('/abrechnungsdaten.html', v_bnr=var_beraternummer, v_mdt=var_mandantennummer, v_monat=var_abrmonat, v_jahr=var_abrjahr, v_version_program=var_version_program, v_version_titel=var_version_titel, PNR_dropdown_list=PNR_dropdown_list, AGNR_dropdown_list=AGNR_dropdown_list)
 
 @app.route('/uebersicht.html')
 def uebersicht():
@@ -419,6 +430,29 @@ def basis_fibu():
     var_version_program = setting.Version_Program
 
     return render_template('basis_fibu.html', v_version_program=var_version_program, v_version_titel=var_version_titel, v_konto_ggagp = konto_ggagp, v_konto_ggagpan = konto_ggagpan, v_konto_ust7 = konto_ust7, v_konto_ust19 = konto_ust19, v_konto_ggust19 = konto_ggust19)
+
+## NEU 24.07.20222
+#############################################################################
+@app.route('/basis_agentur.html', methods=['POST', 'GET'])
+def basis_agentur():
+##############################################################
+### Anlage der Agentur_Stammdaten für die Erfassung
+##############################################################
+
+    if request.method == 'POST':
+        fileziel=open("daten/Agentur_Datei.txt","a", encoding='utf-8')
+        var_bezeichnung=request.form['form_bezeichnung']
+        var_agenturnr=request.form['form_agenturnr']
+        fileziel.writelines(var_agenturnr+" "+var_bezeichnung+"\n")
+        fileziel.close()
+    else:
+        pass
+
+    var_version_titel = setting.Version_Titel
+    var_version_program = setting.Version_Program
+
+    return render_template('basis_agentur.html', v_version_program=var_version_program, v_version_titel=var_version_titel)
+
 
 
 
