@@ -278,10 +278,12 @@
             <div class="w3-col l2 w3-left">
                 <p><label>Agenturnummer</label></p>
             </div>
-
-            <input class="w3-col l4 w3-input w3-border" type="text" name="form_agenturnummer" pattern="[0-9]*" maxlength="9" placeholder="0">
-
-
+<!-- Agenturnummer dropdown neu am 24.7.2022 -->
+            <select class="form-control w3-input w3-pale-yellow input w3-border-red l4" type="text" name="form_agenturnummer" placeholder="0" required style="width:50%">
+                {% for agnrlist in AGNR_dropdown_list %}
+                <option value={{agnrlist}}>{{agnrlist}}</option>
+                {% endfor %}
+            </select><br>
         </div>
 
         <div class="w3-row-padding">

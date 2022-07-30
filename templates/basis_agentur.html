@@ -17,7 +17,7 @@
     <!-- Header -->
     <div class="w3-row-padding">
         <header class="card">
-            <center><h3>{{v_version_program}} Neuanlage Beschäftigte</h3></center>
+            <center><h3>{{v_version_program}} Neuanlage Agenturen</h3></center>
         </header>
     </div>
     <br>
@@ -46,8 +46,8 @@
         <div class="card">
             <center>
                 <h3>
-                    Personalnummer unbedingt vor dem Import im Lohnprogramm anlegen!!<br />
-                    Die hier verwendete Personalnummer ist im Lohn zu vergeben und muss frei sein!<br />
+                    Die hier verwendete Agenturnummer ist im Rechnungswesen als Personenkonto Lieferant anzulegen<br />
+                    Agentur unbedingt vor dem Import im DATEV Rechnungswesen anlegen!!<br />
                 </h3>
             </center>
         </div>
@@ -55,26 +55,21 @@
 
     <div class="w3-row-padding">
         <br>
-        <form action="http://localhost:17102/basis_an.html" class="w3-container w3-card-4 w3-round" , method="POST">
-            <h2>Personalnummer wie im Lohnprogramm</h2>
+        <form action="http://localhost:17102/basis_agentur.html" class="w3-container w3-card-4 w3-round" , method="POST">
+            <h2>Agenturnummer wie im Rechnungswesen</h2>
             <div class="w3-section">
-                <div class="w3-third">
-                    <input class="w3-input w3-border  w3-pale-yellow w3-round" type="text" name="form_name" , required maxlength="20">
-                    <label>Name<br></label><br>
+                <div class="w3-half">
+                    <input class="w3-input w3-border  w3-pale-yellow w3-round" type="text" name="form_bezeichnung" , required maxlength="20">
+                    <label>Bezeichnung<br></label><br>
                 </div>
             </div>
-            <div class="w3-section">
-                <div class="w3-third">
-                    <input class="w3-input w3-border  w3-pale-yellow w3-round" type="text" name="form_vname" , required maxlength="20">
-                    <label>Vorname<br></label><br>
-                </div>
-            </div>
+
 
 
             <div class="w3-row-section">
                 <div class="w3-third">
-                    <input class="w3-input w3-border  w3-pale-yellow w3-round" type="text" name="form_pnr" , required maxlength="5">
-                    <p><label>&nbsp;&nbsp;Personalnummer Lohnprogramm</label></p>
+                    <input class="w3-input w3-border  w3-pale-yellow w3-round" type="text" name="form_agenturnr" , required maxlength="9">
+                    <p><label>&nbsp;&nbsp;Agenturnummer Rechnungswesen</label></p>
                 </div>
 
             </div>
